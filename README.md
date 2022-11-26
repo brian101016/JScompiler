@@ -53,7 +53,7 @@ Actualmente, el comando `find` puede identificar las 32 palabras reservadas (a e
 Al identificar uno o más tokens, el analizador léxico mantendrá un registro de ello en la **consola de errores** (parte inferior),
 donde contará las veces que se ha ingresado dicho token en concreto. También mostrará algún error que exista con respecto al flujo de información.
 
-## Variables
+## Variables - `int`
 Para declarar una variable ingrese `int` y posterior a esto el nombre de la variable. Dentro de la consola de errores se mostrará información
 pertinente a la declaración de la o las variables (así como cualquier error que pueda surgir). <br/> <br/>
 
@@ -61,7 +61,10 @@ Para declarar múltiples variables dentro de la misma sentencia, se puede hacer 
 
 ## Expresiones
 El compilador permite el uso de expresiones matemáticas y la resolución de éstas. Una expresión puede ser `3 + 1` (que arroja 4), o también puede ser
-`a = (8 * 2) + 4` (que arroja 20). <br/> <br/>
+`a = (8 * 2) + 4` (que arroja 20). <br/>
+
+**NO SE PERMITE (aún) EL USO DE NÚMEROS NEGATIVOS** Ej. `-2 + 1` genera error, pero `(0-2) + 1` regresa -1 <br/>
+**NO SE RESPETA (aún) LA JERAQUÍA DE OPERADORES** Ej. `0 * 2 + 1` regresa 0, pero `(0 * 2) + 1` regresa 1  <br/> <br/>
 
 Los operadores válidos (y sus nombres) para las expresiones son los siguientes:
 - `+` SUMA
@@ -92,3 +95,10 @@ lo que resulta en la asignación de la variable de cual sea el resultado de la e
 
 **NOTA 2:** Los operadores `++` y `--` únicamente funcionan con variables y regresan el valor modificado de dicha variable:
 Ej. `foo = 2`, entonces `foo ++ + 2` arroja 5 y ahora `foo` vale 3.
+
+## Uso de `;`
+Para cambiar de instrucción o finalizar la expresión actual ingrese `;`. <br/>
+Ej. `1 + 2 \n 5 + 1` regresa 4, pero `1 + 2; 5 + 1` regresa 3 y 6 respectivamente.
+Esto se debe porque cuando una expresión se rompe por un valor inesperado (el 5 en el primer ejemplo porque estaba esperando un operador), simplemente lo omite
+y continua con lo siguiente (`1 + 2 \n 5 + 1` se convierte en `1 + 2 + 1` pues el 5 se omite al generar error, arrojando 4).
+Sin embargo, cuando se lee un `;`, todas las operaciones/expresiones de detienen y comienza después una nueva (`1 + 2; 5 + 1` se interpreta como dos expresiones). 
